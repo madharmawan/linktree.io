@@ -3,14 +3,12 @@ from Node import Node
 
 def update(nodes):
     """Update the website. By writing the HTML"""
-    write_html(nodes)
-    refresh()
-    return
+    return write_html(nodes)
+
 
 
 def write_html(nodes):
     """Creates the HTML necessary and writes it to a file."""
-    f = open('tester.html', 'w')
     
     setup = setup_message()
     body = setup_body()
@@ -20,9 +18,8 @@ def write_html(nodes):
     closing = end_html()
 
 
-    message = setup + body + node_html + closing
-    f.write(message)
-    f.close()
+    return setup + body + node_html + closing
+
 
     
 def setup_message():
@@ -128,15 +125,15 @@ def write_node(node: Node):
     node_link = node_info[3]
     node_image = node_info[4]
 
-    ret_string = f"""<h5 class="w3-center">{node_title}</h5>
-    <p>{node_description}<br><br>"""
+    ret_string = f"""<h2 class="w3-center">{node_title}</h2>
+          <font size="+0.4" class="w3-center">{node_description}<br><br>"""
 
     if node_contact:
         ret_string += f"""Contact: {node_contact}<br><br>"""
     if node_link:
         ret_string += f"""Link: {node_link}\n\n"""
     
-    ret_string += "</p>\n\n"
+    ret_string += "</font>\n\n"
     return ret_string
 
 def end_html():

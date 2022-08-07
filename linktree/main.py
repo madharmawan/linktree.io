@@ -1,3 +1,5 @@
+
+
 import gspread
 from oauth2client.service_account import ServiceAccountCredentials
 import Link
@@ -30,15 +32,10 @@ def create_nodes(node_lst):
         g = Node()
         g.create_node(dict["Title"], dict["Description"], dict["Link"], dict["Image"], dict["Contact"])
         nodes.append(g)
-    
-    for node in nodes:
-        print(Node.display_node(node))
+
     return nodes
 
-def main():
+def run():
     node_lst = read()
     nodes = create_nodes(node_lst)
-    write.update(nodes)
-
-if __name__ == "__main__":
-    main()
+    return write.update(nodes)
